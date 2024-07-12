@@ -14,7 +14,15 @@ namespace YoutubeAutomation
                 MessageBox.Show("Please enter a valid link");
                 return;
             }
-            await Transcript.GetTranscription(LinkInput.Text);
+            
+            Video video = new Video();
+            await video.CreateVideo(LinkInput.Text);
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

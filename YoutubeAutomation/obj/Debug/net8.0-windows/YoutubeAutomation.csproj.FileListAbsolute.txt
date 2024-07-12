@@ -18,3 +18,4 @@ C:\Users\PrepC\source\repos\YoutubeAutomation\YoutubeAutomation\obj\Debug\net8.0
 C:\Users\PrepC\source\repos\YoutubeAutomation\YoutubeAutomation\obj\Debug\net8.0-windows\YoutubeAutomation.pdb
 C:\Users\PrepC\source\repos\YoutubeAutomation\YoutubeAutomation\obj\Debug\net8.0-windows\YoutubeAutomation.genruntimeconfig.cache
 C:\Users\PrepC\source\repos\YoutubeAutomation\YoutubeAutomation\obj\Debug\net8.0-windows\ref\YoutubeAutomation.dll
+C:\Users\PrepC\source\repos\YoutubeAutomation\YoutubeAutomation\obj\Debug\net8.0-windows\YoutubeAutomation.sourcelink.json
