@@ -16,13 +16,12 @@ namespace YoutubeAutomation
             }
             
             Video video = new Video();
+
             await video.CreateVideo(LinkInput.Text);
-
+            thumbnailImage.Image = await video.LoadThumbnailAsync();
+            await video.CreateTranscription();
+            
         }
 
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

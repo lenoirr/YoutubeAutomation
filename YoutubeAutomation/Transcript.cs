@@ -14,11 +14,9 @@ namespace YoutubeAutomation
 
         private string url = String.Empty;
 
-        public string Url { get; set; }
-
         public Transcript(string url)
         {
-            this.Url = url;
+            this.url = url;
         }
 
         public static async Task<string> GetTranscription(string videoUrl)
@@ -44,6 +42,7 @@ namespace YoutubeAutomation
                     transcription.AppendLine($"{timestamp}: {caption.Text}");
                 }
                 System.Diagnostics.Debug.WriteLine(transcription);
+                return transcription.ToString();
             }
             else
             {
