@@ -9,18 +9,28 @@ namespace YoutubeAutomation
 
         private async void StartButton_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(LinkInput.Text))
+            if (string.IsNullOrEmpty(LinkInput.Text) || string.IsNullOrWhiteSpace(LinkInput.Text))
             {
-                MessageBox.Show("Please enter a valid link");
+                MessageBox.Show("That isn't a link......");
                 return;
             }
-            
-            Video video = new Video();
 
-            await video.CreateVideo(LinkInput.Text);
-            thumbnailImage.Image = await video.LoadThumbnailAsync();
-            await video.CreateTranscription();
-            
+            Video video = new Video(LinkInput.Text);
+            video.TitleNotFound += VideoTitleNotFound_EventHandlerMethod;
+            video.InvalidLink += VideoInvalidLink_EventHandlerMethod;
+
+            await video.ExecutePipline();
+            ThumbnailPicture.Image = video.Thumbnail;
+        }
+
+        private void VideoTitleNotFound_EventHandlerMethod(object sender, EventArgs e)
+        {
+            MessageBox.Show("The video title wasn't found - sorry");
+        }
+
+        private void VideoInvalidLink_EventHandlerMethod(object sender, EventArgs e)
+        {
+            MessageBox.Show("That wasn't a link...... Unless it was, then whoops");
         }
 
     }
