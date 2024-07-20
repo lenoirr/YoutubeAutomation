@@ -75,19 +75,23 @@ namespace YoutubeAutomation
         #endregion
 
         #region Methods
-
+        /*
+         * ExecutePipline() is the main method that will be called to start the process of getting the video's metadata, transcription, and thumbnail.
+         */
         public async Task ExecutePipline()
         {
             bool metaDataSuccess = await GetMetaData();
-
             if (metaDataSuccess == false)
             {
                 return; // some failure occured and has already been handled.
             }
 
             // Start both tasks without awaiting immediately
-            var transcriptionTask = CreateTranscription();
             var thumbnailTask = LoadThumbnailAsync();
+            var transcriptionTask = CreateTranscription();
+            //await LoadThumbnailAsync();
+            //await CreateTranscription();
+
 
             // Now await both tasks to complete
             await Task.WhenAll(transcriptionTask, thumbnailTask);
@@ -117,7 +121,6 @@ namespace YoutubeAutomation
                 return false;
                 throw; // Rethrow the exception if it's not the one we're specifically handling
             }
-
         }
 
         public async Task CreateTranscription()
@@ -137,10 +140,6 @@ namespace YoutubeAutomation
                 if (response.IsSuccessStatusCode)
                 {
                     var stream = await response.Content.ReadAsStreamAsync();
-                    var memoryStream = new MemoryStream();
-                    await stream.CopyToAsync(memoryStream);
-                    memoryStream.Position = 0; // Ensure the copied stream's position is at the beginning
-                    var image = Image.FromStream(memoryStream);
                     this.Thumbnail = Image.FromStream(stream);
                 }
             }
