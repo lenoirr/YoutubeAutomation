@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics.Tracing;
 using System.Linq;
+using System.Net.Mime;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
@@ -80,7 +81,7 @@ namespace YoutubeAutomation
          */
         public async Task ExecutePipline()
         {
-            bool metaDataSuccess = await GetMetaData();
+             bool metaDataSuccess = await GetMetaData();
             if (metaDataSuccess == false)
             {
                 return; // some failure occured and has already been handled.
@@ -128,22 +129,62 @@ namespace YoutubeAutomation
             this.transcript = await Transcript.GetTranscription(this.url);
         }
 
-        public async Task LoadThumbnailAsync()   // let look at this more in depth next. 
+        public async Task LoadThumbnailAsync()
         {
             // grab thumbnail url
 
-            var thumbnailUrl = this.explode.Thumbnails.GetWithHighestResolution().Url;
-
-            using (HttpClient client = new HttpClient())
+            try
             {
-                var response = await client.GetAsync(thumbnailUrl);
-                if (response.IsSuccessStatusCode)
+                var thumbnailUrl = this.explode.Thumbnails.GetWithHighestResolution().Url;
+
+                using (HttpClient client = new HttpClient())
                 {
-                    var stream = await response.Content.ReadAsStreamAsync();
-                    this.Thumbnail = Image.FromStream(stream);
+                    var response = await client.GetAsync(thumbnailUrl);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        if (IsImageFormatCompatible(response))
+                        { 
+                            var stream = await response.Content.ReadAsStreamAsync();
+                            this.Thumbnail = Image.FromStream(stream);
+                        }
+                        else
+                        {
+                            System.Diagnostics.Debug.WriteLine("Received Thumbnail was not a compatible format");
+                            this.Thumbnail = Properties.Resources.youtube_ninja__2_;
+                        }
+                    }
+
                 }
             }
+            catch (Exception)
+            {
+                this.Thumbnail = Properties.Resources.youtube_ninja__2_;
+            }
 
+        }
+
+        private bool IsImageFormatCompatible(HttpResponseMessage response)
+        {
+            string ContentType = response.Content.Headers.ContentType.MediaType;
+
+            string[] supportedFormats = new string[]
+            {
+                "image/bmp",
+                "image/gif",
+                "image/jpeg",
+                "image/png",
+                "image/tiff"
+            };
+
+            // Check if the content type is in the list of supported formats
+            if (Array.Exists(supportedFormats, format => format.Equals(ContentType, StringComparison.OrdinalIgnoreCase)))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public void DisplayDetails()

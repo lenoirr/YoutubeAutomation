@@ -18,6 +18,19 @@ namespace YoutubeAutomation
             ThumbnailLoadingAnimation.Visible = false;
         }
 
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Enter)
+            {
+                StartButton_Click(this, EventArgs.Empty);
+            }
+            else
+            {
+                return false;
+            }
+            return true;
+        }
+
         private void SubscribeToEvents()
         {
 

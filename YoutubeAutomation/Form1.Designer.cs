@@ -123,7 +123,7 @@
             LinkInput.Location = new Point(35, 73);
             LinkInput.Name = "LinkInput";
             LinkInput.Size = new Size(400, 23);
-            LinkInput.TabIndex = 5;
+            LinkInput.TabIndex = 1;
             // 
             // tabPage2
             // 
@@ -145,7 +145,7 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Youtube Automation - MM Reboot";
+            Text = " wer are so fucking back";
             ((System.ComponentModel.ISupportInitialize)ThumbnailPicture).EndInit();
             tabControl1.ResumeLayout(false);
             MainPage.ResumeLayout(false);
