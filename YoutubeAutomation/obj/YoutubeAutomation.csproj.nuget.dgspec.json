@@ -50,9 +50,13 @@
         "net8.0-windows7.0": {
           "targetAlias": "net8.0-windows",
           "dependencies": {
+            "YoutubeExplode.Converter": {
+              "target": "Package",
+              "version": "[6.4.3, )"
+            },
             "youtubeExplode": {
               "target": "Package",
-              "version": "[6.3.16, )"
+              "version": "[6.4.3, )"
             }
           },
           "imports": [

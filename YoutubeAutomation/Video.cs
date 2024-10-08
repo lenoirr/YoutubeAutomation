@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Diagnostics.Tracing;
 using System.Linq;
 using System.Net.Mime;
@@ -9,7 +10,9 @@ using System.Web;
 using System.Windows.Forms;
 using YoutubeExplode;
 using YoutubeExplode.Common;
+using YoutubeExplode.Converter;
 using YoutubeExplode.Videos;
+using YoutubeExplode.Videos.Streams;
 
 namespace YoutubeAutomation
 {
@@ -26,6 +29,9 @@ namespace YoutubeAutomation
         private string transcript;
         private YoutubeExplode.Videos.Video explode;
         private Image thumbnail;
+        private YoutubeClient youtubeClient = new YoutubeClient();
+
+        private readonly AppConfig _config;
         #endregion
 
 
@@ -72,6 +78,9 @@ namespace YoutubeAutomation
         public Video(string url)
         {
             this.url = url;
+
+            _config = ConfigurationLoader.LoadConfiguration();           
+
         }
         #endregion
 
@@ -88,23 +97,23 @@ namespace YoutubeAutomation
             }
 
             // Start both tasks without awaiting immediately
-            var thumbnailTask = LoadThumbnailAsync();
+            var thumbnailTask= LoadThumbnailAsync();
             var transcriptionTask = CreateTranscription();
-            //await LoadThumbnailAsync();
-            //await CreateTranscription();
+            var downloadVideoTask = DownloadVideoAsync();
+            // download video async - cancel if the transcript is not found, then the operation can not be completed at all womp womp
 
 
             // Now await both tasks to complete
-            await Task.WhenAll(transcriptionTask, thumbnailTask);
+            await Task.WhenAll(transcriptionTask, thumbnailTask, downloadVideoTask);
             DisplayDetails();
         }
-        public async Task<bool> GetMetaData()
+
+        private async Task<bool> GetMetaData()
         {
 
             try
             {
-                var youtube = new YoutubeClient();
-                var video = await youtube.Videos.GetAsync(url);
+                var video = await youtubeClient.Videos.GetAsync(url);
                 this.explode = video;
                 this.title = video.Title;
                 this.id = video.Id;
@@ -124,45 +133,54 @@ namespace YoutubeAutomation
             }
         }
 
-        public async Task CreateTranscription()
+        private async Task<string> CreateTranscription()
         {
-            this.transcript = await Transcript.GetTranscription(this.url);
-        }
-
-        public async Task LoadThumbnailAsync()
-        {
-            // grab thumbnail url
-
             try
             {
-                var thumbnailUrl = this.explode.Thumbnails.GetWithHighestResolution().Url;
+                var transcript = await Transcript.GetTranscription(this.url);
+                return transcript;
+            }
+            
+            catch (Exception ex)
+            {
+                MessageBox.Show("Could not find transcription: " + ex.Message);
+                return string.Empty;   
+            }
+        }
 
-                using (HttpClient client = new HttpClient())
-                {
-                    var response = await client.GetAsync(thumbnailUrl);
-                    if (response.IsSuccessStatusCode)
+        private async Task LoadThumbnailAsync()
+        {
+            // grab thumbnail url
+            try
+            {
+                    var thumbnailUrl = this.explode.Thumbnails.GetWithHighestResolution().Url;
+
+                    using (HttpClient client = new HttpClient())
                     {
-                        if (IsImageFormatCompatible(response))
-                        { 
-                            var stream = await response.Content.ReadAsStreamAsync();
-                            this.Thumbnail = Image.FromStream(stream);
-                        }
-                        else
+                    var response = await client.GetAsync(thumbnailUrl);
+                        if (response.IsSuccessStatusCode)
                         {
-                            System.Diagnostics.Debug.WriteLine("Received Thumbnail was not a compatible format");
-                            this.Thumbnail = Properties.Resources.youtube_ninja__2_;
+                            if (IsImageFormatCompatible(response))
+                            {
+                                var stream = await response.Content.ReadAsStreamAsync();
+                                this.Thumbnail = Image.FromStream(stream);
+                            }
+                            else
+                            {
+                                System.Diagnostics.Debug.WriteLine("Received Thumbnail was not a compatible format");
+                                this.Thumbnail = Properties.Resources.youtube_ninja__2_;
+                            }
                         }
-                    }
 
-                }
+                    }                
             }
             catch (Exception)
             {
                 this.Thumbnail = Properties.Resources.youtube_ninja__2_;
             }
-
         }
-
+    
+ 
         private bool IsImageFormatCompatible(HttpResponseMessage response)
         {
             string ContentType = response.Content.Headers.ContentType.MediaType;
@@ -181,7 +199,7 @@ namespace YoutubeAutomation
             {
                 return true;
             }
-            else
+            else // webp is not supported by Image.FromStream
             {
                 return false;
             }
@@ -192,9 +210,36 @@ namespace YoutubeAutomation
             System.Diagnostics.Debug.WriteLine($"{this.Title}, {this.Author}, {this.Duration}, {this.Id}");
         }
 
-        #endregion
+        public async Task DownloadVideoAsync() // TODO: Implement Cancelation Token if Transcript is not found. 
+        {
+            try
+            {
+                string ffmpegPath = _config.FfmpegLocalPath;
+                string outputDirectory = "C:\\YoutubeDownloads";    // TODO: Make this a user defined path
+                Utilities.CreateDirectoryIfNotExists(outputDirectory);
+                string outputPath = Path.Combine(outputDirectory, $"TestVideo.mp4");    // TODO: Use Title as a dynamic video, need to create method to sanitize title for file name
 
+
+                await youtubeClient.Videos.DownloadAsync(id, outputPath, o => o
+                    .SetFFmpegPath(ffmpegPath)
+                    .SetContainer("mp4"));
+
+            }
+            catch (HttpRequestException ex)
+            {
+                MessageBox.Show($"Download HTTP Request Failed: {ex.Message}");
+                throw;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Unknown Error Occured During Download Attempt: {ex.Message}");
+                
+            }
+
+        }
     }
+        #endregion
+ }
 
 
-}
+
