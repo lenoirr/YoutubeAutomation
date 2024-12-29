@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Xabe.FFmpeg" Version="5.2.6" />
     <PackageReference Include="youtubeExplode" Version="6.4.3" />
     <PackageReference Include="YoutubeExplode.Converter" Version="6.4.3" />
   </ItemGroup>

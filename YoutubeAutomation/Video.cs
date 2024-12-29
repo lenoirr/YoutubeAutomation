@@ -1,18 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Diagnostics.Tracing;
-using System.Linq;
-using System.Net.Mime;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web;
-using System.Windows.Forms;
+﻿using System.Diagnostics;
+using System.Text.RegularExpressions;
 using YoutubeExplode;
 using YoutubeExplode.Common;
 using YoutubeExplode.Converter;
-using YoutubeExplode.Videos;
-using YoutubeExplode.Videos.Streams;
+
 
 namespace YoutubeAutomation
 {
@@ -31,7 +22,11 @@ namespace YoutubeAutomation
         private Image thumbnail;
         private YoutubeClient youtubeClient = new YoutubeClient();
 
+
         private readonly AppConfig _config;
+
+
+        public Progress<double> downloadProgress = new Progress<double>();
         #endregion
 
 
@@ -88,7 +83,7 @@ namespace YoutubeAutomation
         /*
          * ExecutePipline() is the main method that will be called to start the process of getting the video's metadata, transcription, and thumbnail.
          */
-        public async Task ExecutePipline()
+        public async Task ExecutePipline(CancellationToken cancellationToken)
         {
              bool metaDataSuccess = await GetMetaData();
             if (metaDataSuccess == false)
@@ -98,13 +93,16 @@ namespace YoutubeAutomation
 
             // Start both tasks without awaiting immediately
             var thumbnailTask= LoadThumbnailAsync();
-            var transcriptionTask = CreateTranscription();
-            var downloadVideoTask = DownloadVideoAsync();
+            //var transcriptionTask = CreateTranscription();
+            var downloadVideoTask = DownloadVideoAsync(cancellationToken);
             // download video async - cancel if the transcript is not found, then the operation can not be completed at all womp womp
 
 
             // Now await both tasks to complete
-            await Task.WhenAll(transcriptionTask, thumbnailTask, downloadVideoTask);
+            //await Task.WhenAll(/*transcriptionTask, thumbnailTask, downloadVideoTask*/);
+            
+            await Task.WhenAll(downloadVideoTask,thumbnailTask);
+
             DisplayDetails();
         }
 
@@ -177,10 +175,10 @@ namespace YoutubeAutomation
             catch (Exception)
             {
                 this.Thumbnail = Properties.Resources.youtube_ninja__2_;
+                Debug.WriteLine("Error loading thumbnail");
             }
         }
     
- 
         private bool IsImageFormatCompatible(HttpResponseMessage response)
         {
             string ContentType = response.Content.Headers.ContentType.MediaType;
@@ -210,35 +208,48 @@ namespace YoutubeAutomation
             System.Diagnostics.Debug.WriteLine($"{this.Title}, {this.Author}, {this.Duration}, {this.Id}");
         }
 
-        public async Task DownloadVideoAsync() // TODO: Implement Cancelation Token if Transcript is not found. 
+        private string SanatizeTitleName(string videoTitle)
+        {
+            // Define a regex pattern for invalid characters
+            string invalidChars = new string(Path.GetInvalidFileNameChars());
+            string invalidRegex = string.Format("[{0}]", Regex.Escape(invalidChars));
+
+            // Replace invalid characters with an underscore
+            return Regex.Replace(videoTitle, invalidRegex, "_") + ".mp4";
+            
+        }
+
+        public async Task DownloadVideoAsync(CancellationToken cancellationToken) // TODO: Implement Cancelation Token if Transcript is not found. 
         {
             try
             {
                 string ffmpegPath = _config.FfmpegLocalPath;
-                string outputDirectory = "C:\\YoutubeDownloads";    // TODO: Make this a user defined path
+                string outputDirectory = "C:\\YoutubeDownloads";                    // TODO: Make this a user defined path
                 Utilities.CreateDirectoryIfNotExists(outputDirectory);
-                string outputPath = Path.Combine(outputDirectory, $"TestVideo.mp4");    // TODO: Use Title as a dynamic video, need to create method to sanitize title for file name
-
+                string videoTitle = SanatizeTitleName(this.title);
+                string outputPath = Path.Combine(outputDirectory, videoTitle);    // TODO: Use Title as a dynamic video, need to create method to sanitize title for file name
 
                 await youtubeClient.Videos.DownloadAsync(id, outputPath, o => o
                     .SetFFmpegPath(ffmpegPath)
-                    .SetContainer("mp4"));
-
+                    .SetContainer("mp4"),
+                     downloadProgress, cancellationToken);
             }
             catch (HttpRequestException ex)
             {
                 MessageBox.Show($"Download HTTP Request Failed: {ex.Message}");
                 throw;
             }
+            catch (OperationCanceledException ex)
+            {
+                MessageBox.Show($"Download Cancelled.");
+            }
             catch (Exception ex)
             {
-                MessageBox.Show($"Unknown Error Occured During Download Attempt: {ex.Message}");
-                
+                MessageBox.Show($"Unknown Error Occured During Download Attempt: {ex}");
             }
-
         }
     }
-        #endregion
+    #endregion
  }
 
 

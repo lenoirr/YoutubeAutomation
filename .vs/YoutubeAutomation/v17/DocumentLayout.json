@@ -3,20 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\PrepC\\source\\repos\\YoutubeAutomation\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{E18ACE22-A1AD-4D91-BD06-4354F1A49ABB}|YoutubeAutomation\\YoutubeAutomation.csproj|c:\\users\\prepc\\source\\repos\\youtubeautomation\\youtubeautomation\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E18ACE22-A1AD-4D91-BD06-4354F1A49ABB}|YoutubeAutomation\\YoutubeAutomation.csproj|solutionrelative:youtubeautomation\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{E18ACE22-A1AD-4D91-BD06-4354F1A49ABB}|YoutubeAutomation\\YoutubeAutomation.csproj|c:\\users\\prepc\\source\\repos\\youtubeautomation\\youtubeautomation\\video.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E18ACE22-A1AD-4D91-BD06-4354F1A49ABB}|YoutubeAutomation\\YoutubeAutomation.csproj|solutionrelative:youtubeautomation\\video.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E18ACE22-A1AD-4D91-BD06-4354F1A49ABB}|YoutubeAutomation\\YoutubeAutomation.csproj|c:\\users\\prepc\\source\\repos\\youtubeautomation\\youtubeautomation\\appconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E18ACE22-A1AD-4D91-BD06-4354F1A49ABB}|YoutubeAutomation\\YoutubeAutomation.csproj|solutionrelative:youtubeautomation\\appconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E18ACE22-A1AD-4D91-BD06-4354F1A49ABB}|YoutubeAutomation\\YoutubeAutomation.csproj|c:\\users\\prepc\\source\\repos\\youtubeautomation\\youtubeautomation\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E18ACE22-A1AD-4D91-BD06-4354F1A49ABB}|YoutubeAutomation\\YoutubeAutomation.csproj|solutionrelative:youtubeautomation\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E18ACE22-A1AD-4D91-BD06-4354F1A49ABB}|YoutubeAutomation\\YoutubeAutomation.csproj|c:\\users\\prepc\\source\\repos\\youtubeautomation\\youtubeautomation\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{E18ACE22-A1AD-4D91-BD06-4354F1A49ABB}|YoutubeAutomation\\YoutubeAutomation.csproj|solutionrelative:youtubeautomation\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E18ACE22-A1AD-4D91-BD06-4354F1A49ABB}|YoutubeAutomation\\YoutubeAutomation.csproj|c:\\users\\prepc\\source\\repos\\youtubeautomation\\youtubeautomation\\utilities.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E18ACE22-A1AD-4D91-BD06-4354F1A49ABB}|YoutubeAutomation\\YoutubeAutomation.csproj|solutionrelative:youtubeautomation\\utilities.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E18ACE22-A1AD-4D91-BD06-4354F1A49ABB}|YoutubeAutomation\\YoutubeAutomation.csproj|C:\\Users\\PrepC\\source\\repos\\YoutubeAutomation\\youtubeautomation\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{E18ACE22-A1AD-4D91-BD06-4354F1A49ABB}|YoutubeAutomation\\YoutubeAutomation.csproj|solutionrelative:youtubeautomation\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,58 +26,57 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
+              "Title": "Form1.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\PrepC\\source\\repos\\YoutubeAutomation\\YoutubeAutomation\\Form1.Designer.cs",
+              "RelativeDocumentMoniker": "YoutubeAutomation\\Form1.Designer.cs",
+              "ToolTip": "C:\\Users\\PrepC\\source\\repos\\YoutubeAutomation\\YoutubeAutomation\\Form1.Designer.cs",
+              "RelativeToolTip": "YoutubeAutomation\\Form1.Designer.cs",
+              "ViewState": "AQIAAL0AAAAAAAAAAAASwNQAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-29T19:34:07.926Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "Video.cs",
               "DocumentMoniker": "C:\\Users\\PrepC\\source\\repos\\YoutubeAutomation\\YoutubeAutomation\\Video.cs",
               "RelativeDocumentMoniker": "YoutubeAutomation\\Video.cs",
               "ToolTip": "C:\\Users\\PrepC\\source\\repos\\YoutubeAutomation\\YoutubeAutomation\\Video.cs",
               "RelativeToolTip": "YoutubeAutomation\\Video.cs",
-              "ViewState": "AQIAAM8AAAAAAAAAAIA7wOMAAAArAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-19T21:16:49.001Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "App.config",
-              "DocumentMoniker": "C:\\Users\\PrepC\\source\\repos\\YoutubeAutomation\\YoutubeAutomation\\App.config",
-              "RelativeDocumentMoniker": "YoutubeAutomation\\App.config",
-              "ToolTip": "C:\\Users\\PrepC\\source\\repos\\YoutubeAutomation\\YoutubeAutomation\\App.config",
-              "RelativeToolTip": "YoutubeAutomation\\App.config",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAQAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
-              "WhenOpened": "2024-10-07T23:48:23.828Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "AppConfig.cs",
-              "DocumentMoniker": "C:\\Users\\PrepC\\source\\repos\\YoutubeAutomation\\YoutubeAutomation\\AppConfig.cs",
-              "RelativeDocumentMoniker": "YoutubeAutomation\\AppConfig.cs",
-              "ToolTip": "C:\\Users\\PrepC\\source\\repos\\YoutubeAutomation\\YoutubeAutomation\\AppConfig.cs",
-              "RelativeToolTip": "YoutubeAutomation\\AppConfig.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAuwAsAAAA2AAAA",
+              "DocumentIndex": 0,
+              "Title": "Form1.cs",
+              "DocumentMoniker": "C:\\Users\\PrepC\\source\\repos\\YoutubeAutomation\\YoutubeAutomation\\Form1.cs",
+              "RelativeDocumentMoniker": "YoutubeAutomation\\Form1.cs",
+              "ToolTip": "C:\\Users\\PrepC\\source\\repos\\YoutubeAutomation\\YoutubeAutomation\\Form1.cs",
+              "RelativeToolTip": "YoutubeAutomation\\Form1.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAAAuAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-07T23:47:06.252Z",
+              "WhenOpened": "2024-12-22T18:31:02.534Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "Utilities.cs",
-              "DocumentMoniker": "C:\\Users\\PrepC\\source\\repos\\YoutubeAutomation\\YoutubeAutomation\\Utilities.cs",
-              "RelativeDocumentMoniker": "YoutubeAutomation\\Utilities.cs",
-              "ToolTip": "C:\\Users\\PrepC\\source\\repos\\YoutubeAutomation\\YoutubeAutomation\\Utilities.cs",
-              "RelativeToolTip": "YoutubeAutomation\\Utilities.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABoAAAABAAAA",
+              "Title": "Form1.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\PrepC\\source\\repos\\YoutubeAutomation\\YoutubeAutomation\\Form1.cs",
+              "RelativeDocumentMoniker": "YoutubeAutomation\\Form1.cs",
+              "ToolTip": "C:\\Users\\PrepC\\source\\repos\\YoutubeAutomation\\YoutubeAutomation\\Form1.cs [Design]",
+              "RelativeToolTip": "YoutubeAutomation\\Form1.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-08T00:04:53.315Z"
+              "WhenOpened": "2024-12-22T18:19:00.141Z"
             }
           ]
         }

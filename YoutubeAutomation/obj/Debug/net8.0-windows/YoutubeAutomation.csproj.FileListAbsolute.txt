@@ -23,3 +23,5 @@ C:\Users\PrepC\source\repos\YoutubeAutomation\YoutubeAutomation\obj\Debug\net8.0
 C:\Users\PrepC\source\repos\YoutubeAutomation\YoutubeAutomation\bin\Debug\net8.0-windows\YoutubeAutomation.dll.config
 C:\Users\PrepC\source\repos\YoutubeAutomation\YoutubeAutomation\bin\Debug\net8.0-windows\CliWrap.dll
 C:\Users\PrepC\source\repos\YoutubeAutomation\YoutubeAutomation\bin\Debug\net8.0-windows\YoutubeExplode.Converter.dll
+C:\Users\PrepC\source\repos\YoutubeAutomation\YoutubeAutomation\bin\Debug\net8.0-windows\Newtonsoft.Json.dll
+C:\Users\PrepC\source\repos\YoutubeAutomation\YoutubeAutomation\bin\Debug\net8.0-windows\Xabe.FFmpeg.dll

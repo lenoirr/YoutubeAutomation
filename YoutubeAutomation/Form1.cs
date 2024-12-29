@@ -1,15 +1,22 @@
+using System.Diagnostics;
+using System.Threading;
 using YoutubeExplode.Videos;
 
 namespace YoutubeAutomation
 {
     public partial class Form1 : Form
     {
+
+        public IProgress<double> DownloadProgress;
         public Form1()
         {
             InitializeComponent();
             FormLoad();
-
         }
+
+        private CancellationTokenSource cancellationTokenSource;
+            
+        public bool isDownloading = false;
         private void FormLoad()
         {
             //ThumbnailPicture.Visible = true;
@@ -50,18 +57,52 @@ namespace YoutubeAutomation
 
         private async void StartButton_Click(object sender, EventArgs e)
         {
-            LoadingAnimation();
+            if (isDownloading)
+            {
+                // Cancel the download
+                cancellationTokenSource.Cancel();
+                isDownloading = false;
+                StartButton.Text = "Download";
+            }
+            else
+            {
+                // Start the download
+                LoadingAnimation();
 
-            Video video = new Video(LinkInput.Text);
-            video.TitleNotFound += VideoTitleNotFound_EventHandlerMethod;
-            video.InvalidLink += VideoInvalidLink_EventHandlerMethod;
+                Video video = new Video(LinkInput.Text);
+                video.TitleNotFound += VideoTitleNotFound_EventHandlerMethod;
+                video.InvalidLink += VideoInvalidLink_EventHandlerMethod;
+                video.downloadProgress.ProgressChanged += DownloadProgressChanged;
 
-            await video.ExecutePipline();
-            DisplayThumbnail(video.Thumbnail);
+                cancellationTokenSource = new CancellationTokenSource();
+                isDownloading = true;
+                StartButton.Text = "Cancel";
+
+                try
+                {
+                    await video.ExecutePipline(cancellationTokenSource.Token);
+                    DisplayThumbnail(video.Thumbnail);
+                }
+                catch (OperationCanceledException)
+                {
+                    MessageBox.Show("Download canceled.");
+                }
+                finally
+                {
+                    isDownloading = false;
+                    StartButton.Text = "Download";
+                }
+            }
         }
 
-        #region EventHandlers
 
+        #region EventHandlers
+        private void DownloadProgressChanged(object sender, double percent)
+        {
+            int roundedProgress = (int)Math.Round(percent * 100);
+            downloadProgressBar.Value = roundedProgress;
+            progressBarText.Text = $"{roundedProgress}%";
+        }
         private void VideoTitleNotFound_EventHandlerMethod(object sender, EventArgs e)
         {
             MessageBox.Show("The video title wasn't found - sorry");
@@ -70,7 +111,8 @@ namespace YoutubeAutomation
         private void VideoInvalidLink_EventHandlerMethod(object sender, EventArgs e)
         {
             MessageBox.Show("That wasn't a link...... Unless it was, then whoops");
-        } 
+        }
         #endregion
+
     }
 }
