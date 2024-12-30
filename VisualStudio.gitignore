@@ -11,6 +11,8 @@
 *.sln.docstates
 YoutubeAutomation/app.secret.config
 YoutubeAutomation\app.secret.config
+/YoutubeAutomation/app.secret.config
+\YoutubeAutomation\app.secret.config
 *.secret.config
 
 # User-specific files (MonoDevelop/Xamarin Studio)
