@@ -3,10 +3,6 @@
   "WorkspaceRootPath": "C:\\Users\\PrepC\\source\\repos\\YoutubeAutomation\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E18ACE22-A1AD-4D91-BD06-4354F1A49ABB}|YoutubeAutomation\\YoutubeAutomation.csproj|c:\\users\\prepc\\source\\repos\\youtubeautomation\\youtubeautomation\\app.secret.config||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{E18ACE22-A1AD-4D91-BD06-4354F1A49ABB}|YoutubeAutomation\\YoutubeAutomation.csproj|solutionrelative:youtubeautomation\\app.secret.config||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{E18ACE22-A1AD-4D91-BD06-4354F1A49ABB}|YoutubeAutomation\\YoutubeAutomation.csproj|c:\\users\\prepc\\source\\repos\\youtubeautomation\\youtubeautomation\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
       "RelativeMoniker": "D:0:0:{E18ACE22-A1AD-4D91-BD06-4354F1A49ABB}|YoutubeAutomation\\YoutubeAutomation.csproj|solutionrelative:youtubeautomation\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     },
@@ -38,36 +34,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "App.config",
               "DocumentMoniker": "C:\\Users\\PrepC\\source\\repos\\YoutubeAutomation\\YoutubeAutomation\\App.config",
               "RelativeDocumentMoniker": "YoutubeAutomation\\App.config",
               "ToolTip": "C:\\Users\\PrepC\\source\\repos\\YoutubeAutomation\\YoutubeAutomation\\App.config",
               "RelativeToolTip": "YoutubeAutomation\\App.config",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAQAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
-              "WhenOpened": "2024-12-30T22:18:34.274Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "app.secret.config",
-              "DocumentMoniker": "C:\\Users\\PrepC\\source\\repos\\YoutubeAutomation\\YoutubeAutomation\\app.secret.config",
-              "RelativeDocumentMoniker": "YoutubeAutomation\\app.secret.config",
-              "ToolTip": "C:\\Users\\PrepC\\source\\repos\\YoutubeAutomation\\YoutubeAutomation\\app.secret.config",
-              "RelativeToolTip": "YoutubeAutomation\\app.secret.config",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
-              "WhenOpened": "2024-12-30T22:18:04.805Z",
+              "WhenOpened": "2024-12-30T22:18:34.274Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 4,
               "Title": "Transcript.cs",
               "DocumentMoniker": "C:\\Users\\PrepC\\source\\repos\\YoutubeAutomation\\YoutubeAutomation\\Transcript.cs",
               "RelativeDocumentMoniker": "YoutubeAutomation\\Transcript.cs",
@@ -79,7 +63,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 3,
               "Title": "Form1.Designer.cs",
               "DocumentMoniker": "C:\\Users\\PrepC\\source\\repos\\YoutubeAutomation\\YoutubeAutomation\\Form1.Designer.cs",
               "RelativeDocumentMoniker": "YoutubeAutomation\\Form1.Designer.cs",
@@ -87,11 +71,12 @@
               "RelativeToolTip": "YoutubeAutomation\\Form1.Designer.cs",
               "ViewState": "AQIAAL0AAAAAAAAAAAASwNQAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-29T19:34:07.926Z"
+              "WhenOpened": "2024-12-29T19:34:07.926Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "Video.cs",
               "DocumentMoniker": "C:\\Users\\PrepC\\source\\repos\\YoutubeAutomation\\YoutubeAutomation\\Video.cs",
               "RelativeDocumentMoniker": "YoutubeAutomation\\Video.cs",
@@ -103,7 +88,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "Form1.cs",
               "DocumentMoniker": "C:\\Users\\PrepC\\source\\repos\\YoutubeAutomation\\YoutubeAutomation\\Form1.cs",
               "RelativeDocumentMoniker": "YoutubeAutomation\\Form1.cs",
@@ -116,7 +101,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 5,
               "Title": "Form1.cs [Design]",
               "DocumentMoniker": "C:\\Users\\PrepC\\source\\repos\\YoutubeAutomation\\YoutubeAutomation\\Form1.cs",
               "RelativeDocumentMoniker": "YoutubeAutomation\\Form1.cs",
