@@ -50,8 +50,7 @@
               "RelativeToolTip": "YoutubeAutomation\\App.config",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
-              "WhenOpened": "2024-12-30T22:18:34.274Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-30T22:18:34.274Z"
             },
             {
               "$type": "Document",
@@ -61,7 +60,7 @@
               "RelativeDocumentMoniker": "YoutubeAutomation\\app.secret.config",
               "ToolTip": "C:\\Users\\PrepC\\source\\repos\\YoutubeAutomation\\YoutubeAutomation\\app.secret.config",
               "RelativeToolTip": "YoutubeAutomation\\app.secret.config",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
               "WhenOpened": "2024-12-30T22:18:04.805Z",
               "EditorCaption": ""
