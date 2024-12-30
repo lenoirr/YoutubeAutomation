@@ -10,6 +10,9 @@
 *.userosscache
 *.sln.docstates
 
+# Configuration File with API Key
+app.secret.config
+
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
