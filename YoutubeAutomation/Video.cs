@@ -93,7 +93,7 @@ namespace YoutubeAutomation
 
             // Start both tasks without awaiting immediately
             var thumbnailTask= LoadThumbnailAsync();
-            //var transcriptionTask = CreateTranscription();
+            var transcriptionTask = CreateTranscription(cancellationToken);
             var downloadVideoTask = DownloadVideoAsync(cancellationToken);
             // download video async - cancel if the transcript is not found, then the operation can not be completed at all womp womp
 
@@ -101,7 +101,9 @@ namespace YoutubeAutomation
             // Now await both tasks to complete
             //await Task.WhenAll(/*transcriptionTask, thumbnailTask, downloadVideoTask*/);
             
-            await Task.WhenAll(downloadVideoTask,thumbnailTask);
+            await Task.WhenAll(transcriptionTask,downloadVideoTask,thumbnailTask);
+
+            Debug.WriteLine(transcriptionTask.Result);
 
             DisplayDetails();
         }
@@ -131,17 +133,17 @@ namespace YoutubeAutomation
             }
         }
 
-        private async Task<string> CreateTranscription()
+        private async Task<string> CreateTranscription(CancellationToken cancellationToken)
         {
             try
             {
-                var transcript = await Transcript.GetTranscription(this.url);
+                var transcript = await Transcript.GetTranscription(this.url, cancellationToken);
                 return transcript;
             }
             
             catch (Exception ex)
             {
-                MessageBox.Show("Could not find transcription: " + ex.Message);
+                MessageBox.Show("Could not find transcription: " + ex);
                 return string.Empty;   
             }
         }

@@ -19,36 +19,47 @@ namespace YoutubeAutomation
             this.url = url;
         }
 
-        public static async Task<string> GetTranscription(string videoUrl)
+        public static async Task<string> GetTranscription(string videoUrl, CancellationToken cancellationToken)
         {
-            
-            string videoId = VideoId.Parse(videoUrl);
 
-            var youtube = new YoutubeClient();
-
-            var trackManifest = await youtube.Videos.ClosedCaptions.GetManifestAsync(videoId);
-
-            var trackInfo = trackManifest.Tracks.FirstOrDefault(t => t.Language.Code == "en");
-
-            if (trackInfo != null)
+            try
             {
-                var captions = await youtube.Videos.ClosedCaptions.GetAsync(trackInfo);
+                string videoId = VideoId.Parse(videoUrl);
 
-                StringBuilder transcription = new StringBuilder();
+                var youtube = new YoutubeClient();
 
-                foreach (var caption in captions.Captions)
+                var trackManifest = await youtube.Videos.ClosedCaptions.GetManifestAsync(videoId);
+
+                var trackInfo = trackManifest.Tracks.FirstOrDefault(t => t.Language.Code == "en");
+
+                if (trackInfo != null)
                 {
-                    string timestamp = TimeSpan.FromMilliseconds(caption.Offset.TotalMilliseconds).ToString(@"hh\:mm\:ss");
-                    transcription.AppendLine($"{timestamp}: {caption.Text}");
+                    var captions = await youtube.Videos.ClosedCaptions.GetAsync(trackInfo, cancellationToken);
+
+                    StringBuilder transcription = new StringBuilder();
+
+                    foreach (var caption in captions.Captions)
+                    {
+                        if (caption.Text == "\n")
+                        {
+                            continue;
+                        }
+                        string timestamp = TimeSpan.FromMilliseconds(caption.Offset.TotalMilliseconds).ToString(@"hh\:mm\:ss");
+                        transcription.AppendLine($"{timestamp}: {caption.Text}");
+                    }
+                    return transcription.ToString();
                 }
-                System.Diagnostics.Debug.WriteLine(transcription);
-                return transcription.ToString();
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine("No English captions available");
+                }
+                return string.Empty;
             }
-            else
+            catch (OperationCanceledException ex)
             {
-                System.Diagnostics.Debug.WriteLine("No English captions available");
+                MessageBox.Show("Transcription cancelled");
+                return string.Empty;
             }
-            return string.Empty;
         }
 
     }

@@ -70,6 +70,7 @@ namespace YoutubeAutomation
                 LoadingAnimation();
 
                 Video video = new Video(LinkInput.Text);
+
                 video.TitleNotFound += VideoTitleNotFound_EventHandlerMethod;
                 video.InvalidLink += VideoInvalidLink_EventHandlerMethod;
                 video.downloadProgress.ProgressChanged += DownloadProgressChanged;
