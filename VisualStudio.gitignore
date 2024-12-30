@@ -12,7 +12,6 @@
 
 # Configuration File with API Key
 app.secret.config
-\YoutubeAutomation\app.secret.config
 /YoutubeAutomation/app.secret.config
 
 
